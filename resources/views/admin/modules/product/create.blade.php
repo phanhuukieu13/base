@@ -9,25 +9,33 @@
                 <div class="card card-custom gutter-b">
                     <div class="card-header">
                         <div class="card-title">
-                            <h3 class="card-label">Thêm người dùng</h3>
+                            <h3 class="card-label">Thêm sản phẩm</h3>
                         </div>
                     </div>
-                    <form method="POST"  action="{{ route('admin.users.store') }}">
+                    <form method="POST" action="{{route('admin.products.store')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="col-xl-12 form-group">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label>Họ tên:</label>
+                                        <label>Name</label>
                                         <input type="text" name="name" class="form-control">
                                     </div>
                                     <div class="col-md-6">
-                                        <label>Email:</label>
-                                        <input type="text" name="email" class="form-control">
+                                        <label for="img">Select image:</label>
+                                        <input type="file" id="img" name="image" >
                                     </div>
-                                     <div  class="col-md-6">
-                                        <label>Password</label>
-                                        <input type="password" name="password" class="form-control">
+                                    <div class="col-md-6">
+                                        <label>Description</label>
+                                        <input type="text" name="description" class="form-control">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Price</label>
+                                        <input type="text" name="price" class="form-control">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Status</label>
+                                        <input type="text" name="status" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -42,14 +50,15 @@
 </div>
 @endsection
 @section('script')
-    <script>
-        $(document).ready(function(){
+<script>
+    $(document).ready(function () {
 
-            $('.cancel').click(function(){
-                const url = route('admin.users.index');
-                window.location.href = url;
-            })
+        $('.cancel').click(function () {
+            const url = route('admin.users.index');
+            window.location.href = url;
+        })
 
-        });
-    </script>
+    });
+
+</script>
 @endsection

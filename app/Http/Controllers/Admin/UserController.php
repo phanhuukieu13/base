@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Hash;
+use App\Models\User;
 class UserController extends Controller
 {
     public function index() {
         
-        return view('admin.modules.users.index');
+        $user = User::all();
+        return view('admin.modules.users.index', compact('user'));
+
 
     }
 
@@ -20,25 +23,33 @@ class UserController extends Controller
     }
 
     public function store(Request $request) {
-
+        $data = $request->all();
+        $data['password'] = Hash::make($data['password']);
+        User::create($data);
+        echo('dit mej mafy them thanh cong roi day');
 
 
     }
     
     public function edit($id) {
-        
-        return view('admin.modules.users.create');
+        $user = User::find($id);
+        return view('admin.modules.users.edit',compact('user'));
 
     }
 
-    public function update(Request $request) {
-
+    public function update(Request $request, $id) {
+        $data = $request->all();
+        unset($data['_token']);
+        $user = User::where('id', $id)->update($data);
+        echo('ok');
 
 
     }
 
-    public function destroy() {
-
+    public function destroy(Request $request, $id) {
+        $user = User::find($id);
+        $user->delete();
+        echo"ok";
 
 
     }

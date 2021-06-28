@@ -12,14 +12,13 @@
                     <div class="card card-custom gutter-b">
                         <div class="card-header">
                             <div class="card-title">
-                                <h3 class="card-label">Danh sách người dùng</h3>
+                                <h3 class="card-label">Danh sách sản phẩm</h3>
                             </div>
                             <div class="card-toolbar">
-                                <a href="{{ route('admin.users.create') }}" class="btn btn-info font-weight-bolder font-size-sm mr-3">Thêm người dùng</a>
+                                <a href="{{ route('admin.products.create') }}" class="btn btn-info font-weight-bolder font-size-sm mr-3">Thêm sản phẩm</a>
                             </div>
                             <div class="card-toolbar">
-                                <input type="text">
-                                <button type="submit" class>Search</button>
+                                <input type="text" placeholder="Search">
                             </div>
                         </div>
                         <div class="card-body">
@@ -29,7 +28,10 @@
                                     <tr class="format-table">
                                         <th scope="col">STT</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Email</th>
+                                        <th scope="col">Image</th>
+                                        <th scope="co1">Description</th>
+                                        <th scope="co1">Price</th>
+                                        <th scope="co1">Status</th>
                                         <th colspan="2">Action</th>
                                     </tr>
                                 </thead>
@@ -37,13 +39,16 @@
                                     @php
                                         $i = 1;
                                     @endphp
-                                    @foreach ($user as $u)
+                                    @foreach ($products as $u)
                                     <tr class="format-table">
                                         <th scope="row">{{$i++}}</th>
                                         <td>{{$u->name}}</td>
-                                        <td>{{$u->email}}</td>
+                                        <td><img style="width:100px" src="{{ asset($u->image) }}" alt=""></td>
+                                        <td>{{$u->description}}</td>
+                                        <td>{{$u->price}}</td>
+                                        <td>{{$u->status}}</td>
                                         <td class="action-button">
-                                            <a href="{{ route('admin.users.edit',['id' => $u->id]) }}" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
+                                            <a href="{{ route('admin.products.edit',['id' => $u->id]) }}" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
                                                 <span class="svg-icon svg-icon-md svg-icon-primary">
                                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -55,7 +60,7 @@
                                                     <!--end::Svg Icon-->
                                                 </span>
                                             </a>
-                                            <form method="POST" action="{{ route('admin.users.destroy',['id' => $u->id]) }}">
+                                            <form method="POST" action="{{ route('admin.products.destroy',['id' => $u->id]) }}">
                                                 @csrf
                                                 <button type='submit' class="btn btn-icon btn-light btn-hover-primary btn-sm" onclick="confirm('Bạn có chắc chắn muốn xóa?')">
                                                     <span class="svg-icon svg-icon-md svg-icon-primary">

@@ -13,24 +13,24 @@
                             <h3 class="card-label">Sửa thông tin</h3>
                         </div>
                     </div>
-                    <form action="">
+                    <form method='post' action="{{ route('admin.users.update', ['id' => $user->id ]  ) }}">
+                        @csrf
                         <div class="card-body">
                             <div class="col-xl-12 form-group">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Họ tên:</label>
-                                        <input type="text" name="name" class="form-control">
+                                        <input type="text" name="name" value="{{$user->name}}" class="form-control">
                                     </div>
                                     <div class="col-md-6">
                                         <label>Email:</label>
-                                        <input type="text" name="name" class="form-control">
+                                        <input type="text" name="email" value='{{$user->email}}' class="form-control">
                                     </div>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary ml-4">Submit</button>
                             <button type="button" class="btn btn-secondary ml-2 cancel">Cancel</button>
                         </div>
-                            
                     </form>
                 </div>
             </div>

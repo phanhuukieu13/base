@@ -14,7 +14,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
         
         Route::get('/edit/{id}','UserController@edit')->name('edit');
 
-        Route::post('update', 'UserController@update')->name('update');
+        Route::post('update/{id}', 'UserController@update')->name('update');
 
         Route::post('destroy/{id}', 'UserController@destroy')->name('destroy');
 
